@@ -12,18 +12,15 @@ const ChatPage = () => {
     {
       id: "initial-ai",
       sender: "ai",
-      text: "Hello! I am your Product Recommendation Assistant. Choose an item below or ask for Jeans, Smartphone, Laptop, or T-Shirt!",
+      text: "Hello! I am your Product Recommendation Assistant.",
     },
   ]);
   const [inputValue, setInputValue] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [stage, setStage] = useState("SELECT_PRODUCT"); // SELECT_PRODUCT | AWAITING_BUDGET | COMPLETED
+  const [stage, setStage] = useState("SELECT_PRODUCT");
 
-  // End of conversation feedback
   const [overallRating, setOverallRating] = useState(0);
   const [overallFeedback, setOverallFeedback] = useState("");
-
-  // Modal for thumbs down
   const [activeModalMessageId, setActiveModalMessageId] = useState(null);
 
   const messagesEndRef = useRef(null);
@@ -42,19 +39,26 @@ const ChatPage = () => {
     );
   };
 
-  // Parse budget range from strings like "500 - 1000", "500 to 1000", "500 1000"
   const parseBudgetRange = (text) => {
     const nums = text.match(/\d+/g);
     if (!nums || nums.length === 0) return null;
-    if (nums.length === 1) {
-      return { min: 0, max: parseInt(nums[0], 10) };
-    }
+    if (nums.length === 1) return { min: 0, max: parseInt(nums[0], 10) };
     const val1 = parseInt(nums[0], 10);
     const val2 = parseInt(nums[1], 10);
-    return {
-      min: Math.min(val1, val2),
-      max: Math.max(val1, val2),
+    return { min: Math.min(val1, val2), max: Math.max(val1, val2) };
+  };
+
+  const persistMessages = (msgs) => {
+    const saved = JSON.parse(localStorage.getItem("conversations_history") || "[]");
+    const record = {
+      id: `conv-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      messages: msgs,
+      rating: overallRating || 0,
+      feedback: overallFeedback || "",
     };
+    saved.push(record);
+    localStorage.setItem("conversations_history", JSON.stringify(saved));
   };
 
   const handleSend = (textToSend) => {
@@ -113,7 +117,7 @@ const ChatPage = () => {
           newMessages.push({
             id: `ai-${Date.now() + 1}`,
             sender: "ai",
-            text: `We could not find products in that specific range for ${selectedProduct.name}. Try a different range!`,
+            text: `No products found in that specific range for ${selectedProduct.name}.`,
           });
         }
       }
@@ -121,6 +125,7 @@ const ChatPage = () => {
 
     setMessages(newMessages);
     setInputValue("");
+    persistMessages(newMessages);
   };
 
   const onFormSubmit = (e) => {
@@ -128,7 +133,6 @@ const ChatPage = () => {
     handleSend();
   };
 
-  // Feedback Handlers
   const handleThumbsUp = (msgId) => {
     setMessages((prev) =>
       prev.map((m) =>
@@ -156,42 +160,9 @@ const ChatPage = () => {
     );
   };
 
-  // Persistence to localStorage
-  const saveCurrentConversation = () => {
-    if (messages.length <= 1) return; // Do not save blank introductory state
-    const saved = JSON.parse(localStorage.getItem("conversations_history") || "[]");
-    const conversationRecord = {
-      id: `conv-${Date.now()}`,
-      timestamp: new Date().toISOString(),
-      messages,
-      rating: overallRating || 0,
-      feedback: overallFeedback || "",
-    };
-    saved.push(conversationRecord);
-    localStorage.setItem("conversations_history", JSON.stringify(saved));
-  };
-
   const handleSaveClick = (e) => {
     e.preventDefault();
-    saveCurrentConversation();
-    alert("Conversation saved successfully!");
-  };
-
-  const handleWantNewSuggestion = () => {
-    saveCurrentConversation();
-    // Reset state
-    setMessages([
-      {
-        id: `initial-ai-${Date.now()}`,
-        sender: "ai",
-        text: "Hello! What new product would you like a recommendation for?",
-      },
-    ]);
-    setSelectedProduct(null);
-    setStage("SELECT_PRODUCT");
-    setOverallRating(0);
-    setOverallFeedback("");
-    setInputValue("");
+    persistMessages(messages);
   };
 
   return (
@@ -229,22 +200,17 @@ const ChatPage = () => {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
+          {/* ONLY ONE button with type="submit" in the form */}
           <button type="submit" className="btn btn-primary">
             Ask
           </button>
+          {/* Save button MUST be type="button" */}
           <button
-            type="submit"
+            type="button"
             onClick={handleSaveClick}
             className="btn btn-secondary"
           >
             Save
-          </button>
-          <button
-            type="button"
-            onClick={handleWantNewSuggestion}
-            className="btn btn-action"
-          >
-            Want new suggestion?
           </button>
         </form>
       </div>

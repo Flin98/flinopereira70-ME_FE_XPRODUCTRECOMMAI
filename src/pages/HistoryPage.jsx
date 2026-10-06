@@ -19,7 +19,7 @@ const HistoryPage = () => {
   return (
     <div className="history-page-container">
       <div className="history-header">
-        <h2>Past Conversations</h2>
+        <h2>Previous Suggestions</h2>
         <div className="filter-group">
           <label htmlFor="rating-filter">Filter by rating: </label>
           <select

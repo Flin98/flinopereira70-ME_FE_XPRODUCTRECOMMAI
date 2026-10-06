@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeContext } from "../context/ThemeContext";
 
-const Header = () => {
+const Header = ({ onNewSuggestion }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const location = useLocation();
 
@@ -15,16 +15,15 @@ const Header = () => {
         <Link
           to="/"
           className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
+          onClick={onNewSuggestion}
         >
-          Chat
+          Want new suggestion?
         </Link>
         <Link
           to="/history"
-          className={`nav-link ${
-            location.pathname === "/history" ? "active" : ""
-          }`}
+          className={`nav-link ${location.pathname === "/history" ? "active" : ""}`}
         >
-          Previous Recommendations
+          Previous Suggestions
         </Link>
         <button
           type="button"

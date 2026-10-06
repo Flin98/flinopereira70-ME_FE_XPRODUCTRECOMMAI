@@ -2,8 +2,8 @@
   "products": [
     {
       "name": "Jeans",
-      "aliases": ["jeans", "denim", "pants"],
-      "askBudgetMsg": "Great choice! What is your budget range for Jeans? (e.g. 500 - 1000 or 1000 - 2500)",
+      "aliases": ["jeans", "denim"],
+      "askBudgetMsg": "Please select your budget (500 - 1000, 1000 - 1500, 1500 - 2000)",
       "ranges": [
         {
           "min": 500,
@@ -12,79 +12,79 @@
         },
         {
           "min": 1001,
-          "max": 2500,
+          "max": 1500,
           "recommendation": "We recommend Pepe Jeans Men's Skinny Fit or Flying Machine Dark Wash Classic Denim!"
         },
         {
-          "min": 2501,
-          "max": 10000,
-          "recommendation": "Check out Tommy Hilfiger Vintage Straight Fit or Calvin Klein Premium Stretch Indigo Jeans!"
+          "min": 1501,
+          "max": 2000,
+          "recommendation": "Check out Tommy Hilfiger Vintage Straight Fit or Calvin Klein Jeans!"
         }
       ]
     },
     {
       "name": "Smartphone",
-      "aliases": ["smartphone", "mobile", "phone"],
-      "askBudgetMsg": "Awesome! What is your budget range for a Smartphone? (e.g. 10000 - 20000 or 20000 - 50000)",
+      "aliases": ["smartphone", "phone", "mobile"],
+      "askBudgetMsg": "Please select your budget (5000 - 15000, 15000 - 30000, 30000 - 60000)",
       "ranges": [
         {
           "min": 5000,
           "max": 15000,
-          "recommendation": "We recommend the Redmi Note 13 5G or Samsung Galaxy M14 for great battery and display!"
+          "recommendation": "Redmi Note 13 5G or Samsung Galaxy M14."
         },
         {
           "min": 15001,
-          "max": 35000,
-          "recommendation": "We suggest OnePlus Nord CE 4 or Nothing Phone (2a) for clean software and performance!"
+          "max": 30000,
+          "recommendation": "OnePlus Nord CE 4 or Nothing Phone (2a)."
         },
         {
-          "min": 35001,
-          "max": 150000,
-          "recommendation": "Go with the Apple iPhone 15 or Samsung Galaxy S24 Ultra for flagship cameras and display!"
+          "min": 30001,
+          "max": 60000,
+          "recommendation": "iPhone 15 or Samsung Galaxy S24."
         }
       ]
     },
     {
       "name": "Laptop",
-      "aliases": ["laptop", "notebook", "computer"],
-      "askBudgetMsg": "Got it! Please share your budget range for a Laptop? (e.g. 30000 - 50000 or 50000 - 90000)",
+      "aliases": ["laptop", "computer", "notebook"],
+      "askBudgetMsg": "Please select your budget (20000 - 40000, 40000 - 70000, 70000 - 150000)",
       "ranges": [
         {
           "min": 20000,
           "max": 40000,
-          "recommendation": "Consider Lenovo IdeaPad 3 with Ryzen 3 or Acer Aspire Lite for school/office work."
+          "recommendation": "Lenovo IdeaPad 3 or Acer Aspire Lite."
         },
         {
           "min": 40001,
-          "max": 75000,
-          "recommendation": "We recommend HP Pavilion 15 (Intel i5 13th Gen) or ASUS Vivobook 16 OLED for multitasking."
+          "max": 70000,
+          "recommendation": "HP Pavilion 15 or ASUS Vivobook 16."
         },
         {
-          "min": 75001,
-          "max": 250000,
-          "recommendation": "We recommend the Apple MacBook Air M2 / M3 or Dell XPS 15 for top-tier productivity."
+          "min": 70001,
+          "max": 150000,
+          "recommendation": "Apple MacBook Air M2 or Dell XPS 15."
         }
       ]
     },
     {
       "name": "T-Shirt",
-      "aliases": ["t-shirt", "tshirt", "tee", "shirt"],
-      "askBudgetMsg": "Super! What is your budget range for a T-Shirt? (e.g. 300 - 700 or 700 - 1500)",
+      "aliases": ["t-shirt", "tshirt", "tee"],
+      "askBudgetMsg": "Please select your budget (300 - 600, 600 - 1200, 1200 - 2500)",
       "ranges": [
         {
-          "min": 200,
+          "min": 300,
           "max": 600,
-          "recommendation": "Check out Bewakoof Regular Cotton Tee or Max Fashion Casual Solid Polo under ₹600."
+          "recommendation": "Bewakoof Regular Cotton Tee or Max Casual Solid Polo."
         },
         {
           "min": 601,
-          "max": 1500,
-          "recommendation": "We suggest US Polo Assn Solid Pique Polo or Puma Active Sports DryCell T-shirt."
+          "max": 1200,
+          "recommendation": "US Polo Assn Solid Pique Polo or Puma DryCell Tee."
         },
         {
-          "min": 1501,
-          "max": 6000,
-          "recommendation": "Try Lacoste Signature Pique Cotton Polo or Superdry Graphic Vintage Crewneck."
+          "min": 1201,
+          "max": 2500,
+          "recommendation": "Lacoste Signature Polo or Superdry Vintage Crewneck."
         }
       ]
     }
